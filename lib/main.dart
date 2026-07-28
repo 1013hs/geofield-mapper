@@ -207,8 +207,6 @@ class _GeoHomePageState extends State<GeoHomePage> {
   // 3. 点击按钮记录产状信息到列表
   void _saveRecord() {
     final timeStr = DateTime.now().toString().substring(0, 19);
-    final posText = _currentPosition != null 
-        .toString() ?? "未定位";
     
     setState(() {
       _records.insert(0, {
@@ -220,7 +218,7 @@ class _GeoHomePageState extends State<GeoHomePage> {
       });
     });
 
-    ScaffoldMessenger.contextOf(context)?.showSnackBar(
+    ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(content: Text('地质产状信息记录成功！'), duration: Duration(seconds: 1)),
     );
   }
