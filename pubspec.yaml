@@ -1,0 +1,19 @@
+name: geofield_mapper
+description: A complete geological field mapping system for offline use.
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  geolocator: ^10.1.0
+  sqflite: ^2.3.0
+  path_provider: ^2.1.1
+  latlong2: ^0.9.0
+  share_plus: ^7.2.1
+
+flutter:
+  uses-material-design: true
