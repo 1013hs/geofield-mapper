@@ -30,6 +30,9 @@ jobs:
     - name: Install dependencies (Pub Get)
       run: flutter pub get
 
+    - name: Create Android Platform Files (if missing)
+      run: flutter create . --platforms=android --org com.example
+
     - name: Build APK (Release)
       run: flutter build apk --release
 
