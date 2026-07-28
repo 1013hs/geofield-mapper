@@ -30,8 +30,19 @@ jobs:
     - name: Install dependencies (Pub Get)
       run: flutter pub get
 
-    - name: Generate Android Template
-      run: flutter create . --platforms=android --project-name=geofield_mapper
+    - name: Clean, Re-create Android Template & Force Kotlin 1.9.0
+      run: |
+        rm -rf android
+        flutter create . --platforms=android --project-name=geofield_mapper
+        
+        # 强制将生成的 android/build.gradle 中的 kotlin 版本改为 1.9.0
+        if [ -f "android/build.gradle" ]; then
+          sed -i "s/ext.kotlin_version = '.*'/ext.kotlin_version = '1.9.0'/" android/build.gradle
+          # 如果里面没有 ext.kotlin_version，则在 buildscript 块中强行插入
+          if ! grep -q "ext.kotlin_version" android/build.gradle; then
+            sed -i "s/buildscript {/buildscript {\n    ext.kotlin_version = '1.9.0'/" android/build.gradle
+          fi
+        fi
 
     - name: Build APK (Release)
       run: flutter build apk --release
