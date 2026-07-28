@@ -30,6 +30,9 @@ jobs:
     - name: Install dependencies (Pub Get)
       run: flutter pub get
 
+    - name: Generate Android Template Properly
+      run: flutter create . --platforms=android --project-name=geofield_mapper
+
     - name: Build APK (Release)
       run: flutter build apk --release
 
