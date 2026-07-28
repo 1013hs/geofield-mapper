@@ -25,6 +25,11 @@ jobs:
         channel: 'stable'
         cache: true
 
+    # 核心：自动在云端补全并修复安卓配置文件，确保完全符合 v2 标准
+    - name: Create Android Native Project Structure
+      run: |
+        flutter create . --org com.geofield --project-name geofield_mapper --platforms android
+
     - name: Install dependencies
       run: flutter pub get
 
